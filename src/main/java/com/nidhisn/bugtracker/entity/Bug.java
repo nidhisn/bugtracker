@@ -1,9 +1,15 @@
 package com.nidhisn.bugtracker.entity;
-
 import jakarta.persistence.*;
-
+import lombok.*;
 import java.time.LocalDateTime;
+
 @Entity
+@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Bug {
 
     @Id
@@ -13,8 +19,32 @@ public class Bug {
     @Column(nullable = false)
     private String title;
 
+    public PriorityEnum getPriority() {
+        return priority;
+    }
+
+    public String getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(String assignedTo) {
+        this.assignedTo = assignedTo;
+    }
+
+    public void setPriority(PriorityEnum priority) {
+        this.priority = priority;
+    }
+
     @Column(length = 1000)
     private String description;
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
+    }
 
     private String module;
 
