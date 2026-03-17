@@ -2,31 +2,51 @@ package com.nidhisn.bugtracker.service;
 
 import com.nidhisn.bugtracker.entity.Bug;
 import com.nidhisn.bugtracker.entity.PriorityEnum;
+import com.nidhisn.bugtracker.entity.Project;
 import com.nidhisn.bugtracker.entity.StatusEnum;
 import com.nidhisn.bugtracker.exception.ResourceNotFoundException;
 import com.nidhisn.bugtracker.repository.BugRepository;
+import com.nidhisn.bugtracker.repository.ProjectRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class BugServiceImpl implements BugService{
 
     private final BugRepository bugRepository;
+    private final ProjectRepository projectRepository;
 
-    public BugServiceImpl(BugRepository bugRepository) {
+    public BugServiceImpl(BugRepository bugRepository,
+                          ProjectRepository projectRepository) {
         this.bugRepository = bugRepository;
+        this.projectRepository = projectRepository;
     }
 
 
     @Override
     public Bug createBug(Bug bug) {
+
         if (bug.getStatus() == null) {
             bug.setStatus(StatusEnum.OPEN);
         }
 
         if (bug.getPriority() == null) {
             bug.setPriority(PriorityEnum.MEDIUM);
+        }
+
+        // 🔥 FIX: fetch project from DB
+        if (bug.getProject() != null && bug.getProject().getId() != null) {
+            Long projectId = bug.getProject().getId();
+
+            Project project = projectRepository.findById(projectId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Project not found"));
+
+            bug.setProject(project);
+        } else {
+            throw new RuntimeException("Project is required");
         }
 
         return bugRepository.save(bug);
