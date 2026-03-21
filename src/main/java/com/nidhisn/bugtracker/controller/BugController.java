@@ -1,5 +1,7 @@
 package com.nidhisn.bugtracker.controller;
 
+import com.nidhisn.bugtracker.dto.BugRequestDTO;
+import com.nidhisn.bugtracker.dto.BugResponseDTO;
 import com.nidhisn.bugtracker.entity.Bug;
 import com.nidhisn.bugtracker.entity.PriorityEnum;
 import com.nidhisn.bugtracker.entity.StatusEnum;
@@ -19,39 +21,39 @@ public class BugController {
     }
 
     @PostMapping
-    public Bug createBug(@RequestBody Bug bug) {
-        return bugService.createBug(bug);
+    public BugResponseDTO createBug(@RequestBody BugRequestDTO dto) {
+        return bugService.createBug(dto);
     }
 
     @GetMapping
-    public List<Bug> getAllBugs() {
+    public List<BugResponseDTO> getAllBugs() {
         return bugService.getAllBugs();
     }
 
     @GetMapping("/{id}")
-    public Bug getBugById(@PathVariable Long id) {
+    public BugResponseDTO getBugById(@PathVariable Long id) {
         return bugService.getBugById(id);
     }
 
     @PutMapping("/{id}/status")
-    public Bug updateStatus(@PathVariable Long id,
+    public BugResponseDTO updateStatus(@PathVariable Long id,
                             @RequestParam StatusEnum status) {
         return bugService.updateBugStatus(id, status);
     }
 
     @PutMapping("/{id}/assign")
-    public Bug assignBug(@PathVariable Long id,
+    public BugResponseDTO assignBug(@PathVariable Long id,
                          @RequestParam String assignedTo) {
         return bugService.assignBug(id, assignedTo);
     }
 
     @GetMapping("/status")
-    public List<Bug> getByStatus(@RequestParam StatusEnum status) {
+    public List<BugResponseDTO> getByStatus(@RequestParam StatusEnum status) {
         return bugService.getBugsByStatus(status);
     }
 
     @GetMapping("/priority")
-    public List<Bug> getByPriority(@RequestParam PriorityEnum priority) {
+    public List<BugResponseDTO> getByPriority(@RequestParam PriorityEnum priority) {
         return bugService.getBugsByPriority(priority);
     }
 

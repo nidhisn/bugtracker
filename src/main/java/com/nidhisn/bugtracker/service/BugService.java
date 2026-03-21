@@ -1,5 +1,7 @@
 package com.nidhisn.bugtracker.service;
 
+import com.nidhisn.bugtracker.dto.BugRequestDTO;
+import com.nidhisn.bugtracker.dto.BugResponseDTO;
 import com.nidhisn.bugtracker.entity.Bug;
 import com.nidhisn.bugtracker.entity.PriorityEnum;
 import com.nidhisn.bugtracker.entity.StatusEnum;
@@ -7,17 +9,17 @@ import com.nidhisn.bugtracker.entity.StatusEnum;
 import java.util.List;
 
 public interface BugService {
-    Bug createBug(Bug bug);
+    BugResponseDTO createBug(BugRequestDTO dto);
 
-    List<Bug> getAllBugs();
+    List<BugResponseDTO> getAllBugs();
 
-    Bug getBugById(Long id);
+    BugResponseDTO getBugById(Long id);
 
-    Bug updateBugStatus(Long id, StatusEnum status);
+    BugResponseDTO updateBugStatus(Long id, StatusEnum status);
 
-    Bug assignBug(Long id, String assignedTo);
+    BugResponseDTO assignBug(Long id, String assignedTo);
 
-    List<Bug> getBugsByStatus(StatusEnum status);
+    List<BugResponseDTO> getBugsByStatus(StatusEnum status);
 
-    List<Bug> getBugsByPriority(PriorityEnum priority);
+    List<BugResponseDTO> getBugsByPriority(PriorityEnum priority);
 }
