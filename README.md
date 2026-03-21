@@ -1,33 +1,35 @@
-# Bug Tracker Backend
+# 🐞 Bug Tracker Backend
 
-Backend service for a Bug Tracker application built using Spring Boot.  
+Backend service for a Bug Tracker application built using **Spring Boot**.  
 Provides REST APIs to create, update, assign, and filter bugs.
 
 ---
 
-## Features
+## 🚀 Features
 
-- Create bugs
-- Get all bugs
-- Get bug by ID
-- Update bug status
-- Assign bugs
-- Filter by status and priority
-
----
-
-## Tech Stack
-
-- Java
-- Spring Boot
-- Spring Web
-- Spring Data JPA
-- Hibernate
-- PostgreSQL
+- Create bugs  
+- Retrieve all bugs  
+- Get bug by ID  
+- Update bug status  
+- Assign bugs to users  
+- Filter bugs by:
+  - Status  
+  - Priority  
 
 ---
 
-## Project Structure
+## 🛠️ Tech Stack
+
+- Java  
+- Spring Boot  
+- Spring Web  
+- Spring Data JPA  
+- Hibernate  
+- PostgreSQL  
+
+---
+
+## 📁 Project Structure
 ```
 src/main/java/com/nidhisn/bugtracker/
 
@@ -40,7 +42,7 @@ src/main/java/com/nidhisn/bugtracker/
 
 ---
 
-## API Endpoints
+##  🔗 API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -65,7 +67,7 @@ src/main/java/com/nidhisn/bugtracker/
 ```
 ---
 
-## Setup
+## ⚙️ Setup
 
 ### 1. Clone the repository
 
