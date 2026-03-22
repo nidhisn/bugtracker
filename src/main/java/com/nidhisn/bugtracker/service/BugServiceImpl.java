@@ -13,6 +13,7 @@ import com.nidhisn.bugtracker.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -77,6 +78,10 @@ public class BugServiceImpl implements BugService{
                 .orElseThrow(() -> new ResourceNotFoundException("Bug not found"));
 
         bug.setStatus(status);
+
+        if (status == StatusEnum.RESOLVED) {
+            bug.setResolvedAt(LocalDateTime.now());
+        }
 
         return BugMapper.toDTO(bugRepository.save(bug));
     }
